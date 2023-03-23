@@ -30,4 +30,29 @@ loop_start:
 	call comp
 	jmp loop_start
 loop_done:
+	mov rax, 1
+	mov rdi, 1
+	mov rsi, QWORD PTR[rax]
+	mov rdx, 8
+	syscall
+
+	mov rax, 1
+	mov rdi, 1
+	mov rsi, QWORD PTR[SUM_POSITIVE]
+	mov rdx, 8
+	syscall
+
+	mov rax, 1
+	mov rdi, 1
+	mov rsi, QWORD PTR[SUM_NEGATIVE]
+	mov rdx, 8
+	syscall
+
+	mov rcx, CALC_DATA_BEGIN
+	mov rsp, CALC_DATA_END
+	sub rsp, rcx
+	mov rax, 1
+	mov rdi, 1
+	mov rsi, QWORD PTR[CALC_DATA_BEGIN]
+	mov rdx, QWORD PTR[rsp]
 	syscall
