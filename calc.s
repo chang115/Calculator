@@ -1,6 +1,10 @@
 	.intel_syntax noprefix
 	.section .text 
 	.global _start
+U:
+	add rbx, 8
+	call UPPER_FRAG
+	ret
 A:
 	add rbx, 8
 	call AND_FRAG
@@ -20,7 +24,8 @@ comp:
 	je A
 	cmp QWORD PTR[rbx], 'S'
 	je S
-	add rbx, 8
+	cmp QWORD PTR[rbx], 'U'
+	je U
 	
 _start:
 	xor rax, rax
