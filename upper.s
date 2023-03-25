@@ -12,10 +12,10 @@ UPPER_FRAG:
 	inc rax
 	cmp BYTE PTR[rbx], '`'
 	jg comp
-	add rbx, 1
+	inc rbx
 	jmp UPPER_FRAG
 THEO:
-	sub BYTE PTR[rbx], 32
+	sub BYTE PTR[rbx], 20
 	add rbx, 1
 	jmp UPPER_FRAG
 
