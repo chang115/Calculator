@@ -2,20 +2,20 @@
 	.section .text
 	.global UPPER_FRAG
 comp:
-	cmp QWORD PTR[rbx], 'z'
+	cmp BYTE PTR[rbx], 'z'
 	jge THEO
 	
 	
 UPPER_FRAG:
-	cmp QWORD PTR[rbx], 0
+	cmp BYTE PTR[rbx], 0
 	je YIP
 	inc rax
-	cmp QWORD PTR[rbx], '`'
+	cmp BYTE PTR[rbx], '`'
 	jg comp
 	add rbx, 1
 	jmp UPPER_FRAG
 THEO:
-	sub QWORD PTR[rbx], 32
+	sub BYTE PTR[rbx], 32
 	add rbx, 1
 	jmp UPPER_FRAG
 
