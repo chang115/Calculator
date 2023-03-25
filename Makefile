@@ -20,7 +20,7 @@ data/simpleone_cmds.o: data/simpleone_cmds.s
 	as -g  data/simpleone_cmds.s -o data/simpleone_cmds.o
 
 data/upperonly_cmds.o: data/upperonly_cmds.s
-	as -g data/upperonly_cmds.s -o data/simpleone_cmds.o
+	as -g data/upperonly_cmds.s -o data/upperonly_cmds.o
 
 data/easy_cmds.o: data/easy_cmds.s
 	as -g data/easy_cmds.s -o data/easy_cmds.o
@@ -31,16 +31,16 @@ data/basicwithupper_cmds.o: data/basicwithupper_cmds.s
 data/simplerandom_cmds.o: data/simplerandom_cmds.s
 	as -g data/simplerandom_cmds.s -o data/simplerandom_cmds.o
 
-calc_simplerandom: data/simplerandom_cmds.o calc.o and.o or.o sum.o
+calc_simplerandom: data/simplerandom_cmds.o calc.o and.o or.o sum.o upper.o
 	ld -g  calc.o and.o or.o sum.o data/simplerandom_cmds.o -o calc_simplerandom
 
-calc_basicwithupper: data/basicwithupper_cmds.o calc.o and.o or.o sum.o
+calc_basicwithupper: data/basicwithupper_cmds.o calc.o and.o or.o sum.o upper.o
 	ld -g  calc.o and.o or.o sum.o data/basicwithupper_cmds.o -o calc_basicwithupper
 
-calc_easy: data/easy_cmds.o calc.o and.o or.o sum.o
+calc_easy: data/easy_cmds.o calc.o and.o or.o sum.o upper.o
 	ld -g  calc.o and.o or.o sum.o data/easy_cmds.o -o calc_easy
 
-calc_upperonly: data/upperonly_cmds.o calc.o and.o or.o sum.o
+calc_upperonly: data/upperonly_cmds.o calc.o and.o or.o sum.o upper.o
 	ld -g  calc.o and.o or.o sum.o data/upperonly_cmds.o -o calc_upperonly
 
 calc_basic: data/basic_cmds.o calc.o and.o or.o sum.o
