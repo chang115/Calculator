@@ -1,5 +1,5 @@
 	.intel_syntax noprefix
-	.text
+	.section .text 
 	.global _start
 A:
 	add rbx, 8
@@ -20,7 +20,8 @@ comp:
 	je A
 	cmp QWORD PTR[rbx], 'S'
 	je S
-	ret
+	add rbx, 8
+	
 _start:
 	xor rax, rax
 	mov rbx, OFFSET [CALC_DATA_BEGIN]
@@ -30,29 +31,38 @@ loop_start:
 	call comp
 	jmp loop_start
 loop_done:
+	mov QWORD PTR[pointer], rax
 	mov rax, 1
 	mov rdi, 1
-	mov rsi, QWORD PTR[rax]
+	mov rsi, OFFSET[pointer]
 	mov rdx, 8
 	syscall
 
 	mov rax, 1
 	mov rdi, 1
-	mov rsi, QWORD PTR[SUM_POSITIVE]
+	mov rsi, OFFSET[SUM_POSITIVE]
 	mov rdx, 8
 	syscall
 
 	mov rax, 1
 	mov rdi, 1
-	mov rsi, QWORD PTR[SUM_NEGATIVE]
+	mov rsi, OFFSET[SUM_NEGATIVE]
 	mov rdx, 8
 	syscall
 
-	mov rcx, CALC_DATA_BEGIN
-	mov rsp, CALC_DATA_END
-	sub rsp, rcx
 	mov rax, 1
 	mov rdi, 1
-	mov rsi, QWORD PTR[CALC_DATA_BEGIN]
-	mov rdx, QWORD PTR[rsp]
+	mov rcx, OFFSET [CALC_DATA_BEGIN]
+	mov rdx, OFFSET [CALC_DATA_END]
+	mov rsi, OFFSET [CALC_DATA_BEGIN]
+	sub rdx, rcx
 	syscall
+
+	mov rax, 60
+	xor rdi, rdi
+	syscall
+	
+	.section .data
+
+pointer:
+	.quad 0
