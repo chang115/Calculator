@@ -41,7 +41,7 @@ calc_easy: data/easy_cmds.o calc.o and.o or.o sum.o upper.o
 	ld -g  calc.o and.o or.o sum.o data/easy_cmds.o -o calc_easy
 
 calc_upperonly: data/upperonly_cmds.o calc.o and.o or.o sum.o upper.o
-	ld -g  calc.o and.o or.o sum.o data/upperonly_cmds.o -o calc_upperonly
+	ld -g  calc.o and.o or.o sum.o upper.o data/upperonly_cmds.o -o calc_upperonly
 
 calc_basic: data/basic_cmds.o calc.o and.o or.o sum.o
 	ld -g  calc.o and.o or.o sum.o data/basic_cmds.o -o calc_basic
