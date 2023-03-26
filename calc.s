@@ -36,7 +36,6 @@ loop_start:
 	call comp
 	jmp loop_start
 loop_done:
-	add rax, r9
 	mov QWORD PTR[pointer], rax
 	mov rax, 1
 	mov rdi, 1

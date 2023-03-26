@@ -8,8 +8,6 @@ comp:
 	
 UPPER_FRAG:
 	mov r12, QWORD PTR[rbx]
-	mov r9, rax
-	xor rax, rax
 loop_start:	
 	cmp BYTE PTR[r12], 0
 	je loop_done
