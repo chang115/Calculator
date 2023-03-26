@@ -2,23 +2,23 @@
 	.section .text
 	.global UPPER_FRAG
 comp:
-	cmp BYTE PTR[rcx], 'z'
+	cmp BYTE PTR[r12], 'z'
 	jle ite
 	
 	
 UPPER_FRAG:
-	mov rcx, QWORD PTR[CALC_DATA_BEGIN+8]
+	mov r12, QWORD PTR[CALC_DATA_BEGIN+8]
 loop_start:	
-	cmp BYTE PTR[rcx], 0
+	cmp BYTE PTR[r12], 0
 	je loop_done
 	inc rax
-	cmp BYTE PTR[rcx], '`'
+	cmp BYTE PTR[r12], '`'
 	jg comp
-	add rcx, 1
+	add r12, 1
 	jmp loop_start
 ite:
-	sub BYTE PTR[rcx], 0x20
-	add rcx, 1
+	sub BYTE PTR[r12], 0x20
+	add r12, 1
 	jmp loop_start
 
 loop_done:
