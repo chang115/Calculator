@@ -3,22 +3,22 @@
 	.global UPPER_FRAG
 comp:
 	cmp BYTE PTR[rbx], 'z'
-	jge THEO
+	jle ite
 	
 	
 UPPER_FRAG:
 	cmp BYTE PTR[rbx], 0
-	je YIP
+	je loop_done
 	inc rax
 	cmp BYTE PTR[rbx], '`'
 	jg comp
-	inc rbx
+	add QWORD PTR[rbx], 1
 	jmp UPPER_FRAG
-THEO:
-	sub BYTE PTR[rbx], 20
-	add rbx, 1
+ite:
+	sub BYTE PTR[rbx], 0x20
+	add QWORD PTR[rbx], 1
 	jmp UPPER_FRAG
 
-YIP:
+loop_done:
 	add rbx, 8
 	ret
