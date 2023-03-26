@@ -36,24 +36,24 @@ loop_start:
 	call comp               #calls comp symbol
 	jmp loop_start          #jumps to loop_start
 loop_done:
-	mov QWORD PTR[pointer], rax  #moves rax into pointer
-	mov rax, 1                   #system call number for write
-	mov rdi, 1                   #file descriptor for stdout
-	mov rsi, OFFSET[pointer]     #data we want to stdout
-	mov rdx, 8                   #size of data
-	syscall                      #call to write syscall
+	mov QWORD PTR[pointer], rax        #moves rax into pointer
+	mov rax, 1                         #system call number for write
+	mov rdi, 1                         #file descriptor for stdout
+	mov rsi, OFFSET[pointer]           #data we want to stdout
+	mov rdx, 8                         #size of data
+	syscall                            #call to write syscall
 
-	mov rax, 1                      
-	mov rdi, 1
-	mov rsi, OFFSET[SUM_POSITIVE]
-	mov rdx, 8
-	syscall
+	mov rax, 1                         #system call number for write
+	mov rdi, 1                         #file descirptor for stdout
+	mov rsi, OFFSET[SUM_POSITIVE]      #data we want to stdout
+	mov rdx, 8                         #size of data
+	syscall                            #call to write syscall
 
-	mov rax, 1
-	mov rdi, 1
-	mov rsi, OFFSET[SUM_NEGATIVE]
-	mov rdx, 8
-	syscall
+	mov rax, 1                         #system call number for write
+	mov rdi, 1                         #file descriptor for stdout
+	mov rsi, OFFSET[SUM_NEGATIVE]      #data we want to stdout
+	mov rdx, 8                         #size of data
+	syscall                            #call to write syscall
 
 	mov rax, 1
 	mov rdi, 1
@@ -67,7 +67,7 @@ loop_done:
 	xor rdi, rdi                       #sets rdi to 0
 	syscall                            #call to syscall
 	
-	.section .data
+	.section .data                     #data section of the file
 
 pointer:
-	.quad 0
+	.quad 0                            #allocated 8 bytes of 0
