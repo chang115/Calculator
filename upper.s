@@ -11,14 +11,14 @@ UPPER_FRAG:
 loop_start:	
 	cmp BYTE PTR[r12], 0     #compares byte value of r12 to 0
 	je loop_done             #jumps to loop_done if above compare statement is true
-	inc rax                  #increments value of rax by 1
+	inc rax                  #increments value of rax by 1 to hold the length of the string
 	cmp BYTE PTR[r12], '`'   #compares byte value of r12 to ascii of character `
 	jg comp                  #jumps to comp if greater than
-	add r12, 1               #adds 1 to r12
+	add r12, 1               #adds 1 to r12 to go to next character
 	jmp loop_start           #jumps to loop_start symbol
 ite:
 	sub BYTE PTR[r12], 0x20  #subtracts 0x20 from byte value of r12. Making lowercase into uppercase
-	add r12, 1               #adds 1 to r12
+	add r12, 1               #adds 1 to r12 to go to next character
 	jmp loop_start           #jumps to loop_start symbol
 
 loop_done:
